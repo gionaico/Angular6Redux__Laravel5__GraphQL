@@ -12,7 +12,7 @@ import { FavouritesModel } from '../store/models';
 
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-
+console.log("TEST");
 @Component({
   selector: "app-home-page",
   templateUrl: "./home.component.html",
