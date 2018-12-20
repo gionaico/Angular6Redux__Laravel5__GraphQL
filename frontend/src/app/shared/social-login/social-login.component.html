@@ -1,0 +1,27 @@
+<h1>Angular2 Social login</h1>{{status}}
+<button (click)="signIn('google')">google</button>
+<button (click)="logout()">logout</button>
+<div *ngIf="user">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td>{{user.name}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{user.email}}</td>
+        </tr>
+        <tr>
+            <td>UID</td>
+            <td>{{user.uid}}</td>
+        </tr>
+        <tr>
+            <td>Provider</td>
+            <td>{{user.provider}}</td>
+        </tr>
+        <tr>
+            <td>Image</td>
+            <td>{{user.image}}</td>
+        </tr>
+    </table>
+</div>

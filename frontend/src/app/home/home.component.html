@@ -1,0 +1,15 @@
+<div class="banner" *appShowAuthed="false">
+  <div align="center">
+    <h1>Smart Devices</h1>
+    <p>La tecnología a su alcance</p>
+  </div>
+</div>
+
+<app-filter-page (filterData)="onFilterDat($event)"></app-filter-page>
+
+<section class="container-device-list center-by-margin lateral-padding">
+  <app-device-list [config]="listConfig"></app-device-list>
+</section>
+
+<button (click)="onClickMe()">botoooooo</button>
+<button (click)="onClickMe2()">boton2</button>

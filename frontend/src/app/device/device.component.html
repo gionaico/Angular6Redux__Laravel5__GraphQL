@@ -1,0 +1,20 @@
+<div class="home-page">
+
+  <div class="banner" *appShowAuthed="false">
+    <div align="center">
+      <h1>Detail Devices</h1>
+      <p>Su mejor tienda de dispositivos</p>
+    </div>
+  </div>
+  
+  <div class="container page">
+  	<li *ngFor="let device of devices" class="tag-default tag-pill tag-outline">
+    <p>Modelo:{{ device.model }}</p>
+    <p>Marca:{{ device.brand }}</p>
+    <p>Descripcion:{{ device.description }}</p>
+    <p>Camara:{{ device.camera }}</p>
+    <p>Precio:{{ device.price }}</p>
+   
+    </li>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<nav 
+    [hidden]="loading || total_pages.length <= 1" 
+    class="pagination-container">
+
+    <div 
+        class="pag-item pointer" 
+        *ngFor="let pageNumber of total_pages"
+        (click)="updatePage(pageNumber)"
+        [ngClass]="{'active': pageNumber === currentPage}">
+
+        {{ pageNumber }}
+    </div>
+</nav> 
