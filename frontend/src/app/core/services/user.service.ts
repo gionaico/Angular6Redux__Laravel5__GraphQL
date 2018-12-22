@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Observable ,  BehaviorSubject ,  ReplaySubject } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { User } from '../models';
-import { map } from 'rxjs/operators/map';
-import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
+import { map ,  distinctUntilChanged } from 'rxjs/operators';
 
 
 @Injectable()
@@ -30,7 +27,6 @@ export class UserService {
   populate() {
     // If JWT detected, attempt to get & store user's info
     if (this.jwtService.getToken()) {
-      console.log("inside getToken");
       this.apiService.get('/user')
       .subscribe(
         data => this.setAuth(data.user),
@@ -65,7 +61,6 @@ export class UserService {
     return this.apiService.post('/users' + route, {user: credentials})
       .pipe(map(
       data => {
-        console.log(data);
         this.setAuth(data.user);
         return data;
       }

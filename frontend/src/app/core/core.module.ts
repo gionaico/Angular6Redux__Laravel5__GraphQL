@@ -6,16 +6,12 @@ import { HttpTokenInterceptor } from './interceptors/http.token.interceptor';
 import {
   ApiService,
   ArticlesService,
-  CategoryService,
-  DevicesService,
   AuthGuard,
   CommentsService,
   JwtService,
   ProfilesService,
   TagsService,
-  ContactService,
-  UserService,
-  FavouriteService
+  UserService
 } from './services';
 
 @NgModule({
@@ -26,16 +22,12 @@ import {
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
     ApiService,
     ArticlesService,
-    CategoryService,
-    DevicesService,
     AuthGuard,
     CommentsService,
     JwtService,
     ProfilesService,
     TagsService,
-    ContactService,
-    UserService,
-    FavouriteService
+    UserService
   ],
   declarations: []
 })

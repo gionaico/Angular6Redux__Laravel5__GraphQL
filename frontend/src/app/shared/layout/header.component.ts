@@ -16,15 +16,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.userService.currentUser.subscribe(
       (userData) => {
-        console.log("currentUserHEADER",userData);
         this.currentUser = userData;
       }
     );
   }
-
-  logout(){
-    console.log("YijaLogout");
-    this.userService.purgeAuth();
-  }
-
 }

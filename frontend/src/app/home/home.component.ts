@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { DeviceListConfig, CategoryService, UserService } from '../core';
-
-/* ngrx */
-import { Store } from '@ngrx/store';
-import { AppState } from '../store/app.reducers';
-import * as favouritesActions from '../store/actions';
-import { FavouritesModel } from '../store/models';
-
+import { ArticleListConfig, TagsService, UserService } from '../core';
 
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
@@ -16,43 +9,38 @@ import gql from 'graphql-tag';
 @Component({
   selector: "app-home-page",
   templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.sass"]
+  styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
-  favourites: FavouritesModel[] = [];
-
   constructor(
     private router: Router,
-    private categoriesService: CategoryService,
+    private tagsService: TagsService,
     private userService: UserService,
-    private store: Store<AppState>,
     private apollo: Apollo
   ) {}
 
   isAuthenticated: boolean;
-  listConfig: DeviceListConfig = {
+  listConfig: ArticleListConfig = {
     type: "all",
     filters: {}
   };
-  categories: Array<string> = [];
+  tags: Array<string> = [];
   tagsLoaded = false;
-  
 
   ngOnInit() {
-   
-
-    console.warn(
-      "this.store",
-      this.store,
-      "--------",
-      this.store.dispatch(new favouritesActions.ActionCargarFavoritos())
-    );
-
-    this.store.dispatch(new favouritesActions.ActionCargarFavoritos());
-
-    this.store.select("favoritos").subscribe(favoritos => {
-      console.warn("favoritos", favoritos);
-    });
+    this.apollo
+      .watchQuery({ query: gql`
+          {
+            devices {
+              data {
+                description
+              }
+            }
+          }
+        ` })
+      .valueChanges.subscribe(result => {
+        console.log(result);
+      });
 
     this.userService.isAuthenticated.subscribe(authenticated => {
       this.isAuthenticated = authenticated;
@@ -63,32 +51,22 @@ export class HomeComponent implements OnInit {
       } else {
         this.setListTo("all");
       }
-    }); /* END */
+    });
 
-    this.categoriesService.getAll().subscribe(categories => {
-      console.log("categories", categories);
-      this.categories = categories;
+    this.tagsService.getAll().subscribe(tags => {
+      this.tags = tags;
       this.tagsLoaded = true;
-    }); /* END */
-  }
-
-  onClickMe() {
-    this.store.dispatch(
-      new favouritesActions.ActionCargarFavoritosSuccess([{ u: "sss" }])
-    );
-  }
-  onClickMe2() {
-    console.log(
-      this.store.dispatch(new favouritesActions.ActionCargarFavoritos())
-    );
+    });
   }
 
   setListTo(type: string = "", filters: Object = {}) {
-    this.listConfig = { type: type, filters: filters };
-  }
+    // If feed is requested but user is not authenticated, redirect to login
+    if (type === "feed" && !this.isAuthenticated) {
+      this.router.navigateByUrl("/login");
+      return;
+    }
 
-  onFilterDat(filter) {
-    console.log("home list FILTERDATA", filter);
-    this.listConfig = filter;
+    // Otherwise, set the list object
+    this.listConfig = { type: type, filters: filters };
   }
 }

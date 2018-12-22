@@ -1,4 +1,5 @@
 <?php
+/* echo ("siiiiiiiiiii"); */
 
 use App\GraphQL\Query\DevicesQuery;
 use App\GraphQL\Query\UsersQuery;
@@ -6,7 +7,6 @@ use App\GraphQL\Type\DevicesType;
 use App\GraphQL\Type\UsersType;
 use App\GraphQL\Query\CategoriesQuery;
 use App\GraphQL\Type\CategoriesType;
-
 return [
     'prefix' => 'graphql',
     'routes' => 'query/{graphql_schema?}',

@@ -11,10 +11,11 @@ return [
      
      'allowedOrigins' => env(["http://localhost:4200,http://localhost:4200/","http://127.0.0.1:4200","http://127.0.0.1:4200/"]) ? explode(',', env('["http://localhost:4200,http://localhost:4200/","http://127.0.0.1:4200","http://127.0.0.1:4200/"]')) : ['*'],
      'allowedHeaders' => ['Content-Type', 'X-Requested-With', 'Authorization'],
+      'allowedHeaders' => ['Content-Type', 'X-Requested-With', 'Authorization'], 
      */
-    'supportsCredentials' => true,
+    'supportsCredentials' => false,
     'allowedOrigins' => ['*'],
-    'allowedHeaders' => ['Content-Type', 'X-Requested-With', 'Authorization'],
+    'allowedHeaders' => ['*'],
     'allowedMethods' => ['*'],
     'exposedHeaders' => [],
     'maxAge' => 864000,

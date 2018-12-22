@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { Article, ArticleListConfig } from '../models';
-import { map } from 'rxjs/operators/map';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ArticlesService {
@@ -37,7 +37,6 @@ export class ArticlesService {
     return this.apiService.delete('/articles/' + slug);
   }
 
-/*
   save(article): Observable<Article> {
     // If we're updating an existing article
     if (article.slug) {
@@ -50,27 +49,6 @@ export class ArticlesService {
         .pipe(map(data => data.article));
     }
   }
-  */
-  save(article): Observable<string> {
-    console.log("service contacts",article);
-    /*return this.apiService
-    .post('/contact', {article: article})
-    .pipe(map(data => {
-      console.log(data);
-      return data;
-    }));*/
-    return this.apiService.get('/tags')
-          .pipe(map(data => data.tags));
-  }
-
-  /*save(article): Observable<string> {
-    return this.apiService
-    .post('/articles', {article: article})
-    .pipe(map(data => {
-      console.log(data);
-      return data;
-    }));
-  }*/
 
   favorite(slug): Observable<Article> {
     return this.apiService.post('/articles/' + slug + '/favorite');

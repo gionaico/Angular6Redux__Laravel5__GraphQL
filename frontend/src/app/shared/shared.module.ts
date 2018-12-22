@@ -5,12 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { ArticleListComponent, ArticleMetaComponent, ArticlePreviewComponent } from './article-helpers';
-import { DeviceListComponent ,DevicePreviewComponent } from './list-device';
-import { FilterComponent } from './filter';
 import { FavoriteButtonComponent, FollowButtonComponent } from './buttons';
 import { ListErrorsComponent } from './list-errors.component';
-import { PaginationComponent } from "./pagination";
-import { SociaLoginComponent } from "./social-login";
 import { ShowAuthedDirective } from './show-authed.directive';
 
 @NgModule({
@@ -27,19 +23,13 @@ import { ShowAuthedDirective } from './show-authed.directive';
     ArticlePreviewComponent,
     FavoriteButtonComponent,
     FollowButtonComponent,
-    FilterComponent,
     ListErrorsComponent,
-    ShowAuthedDirective,
-    DeviceListComponent,
-    DevicePreviewComponent,
-    PaginationComponent,
-    SociaLoginComponent
+    ShowAuthedDirective
   ],
   exports: [
     ArticleListComponent,
     ArticleMetaComponent,
     ArticlePreviewComponent,
-    FilterComponent,
     CommonModule,
     FavoriteButtonComponent,
     FollowButtonComponent,
@@ -48,11 +38,7 @@ import { ShowAuthedDirective } from './show-authed.directive';
     HttpClientModule,
     ListErrorsComponent,
     RouterModule,
-    ShowAuthedDirective,
-    DeviceListComponent,
-    DevicePreviewComponent,
-    PaginationComponent,
-    SociaLoginComponent
+    ShowAuthedDirective
   ]
 })
 export class SharedModule {}
