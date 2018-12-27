@@ -5,6 +5,7 @@ import { ArticleListConfig, TagsService, UserService } from '../core';
 
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { ApiService } from "../core/services/api.service";
 console.log("TEST");
 @Component({
   selector: "app-home-page",
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private tagsService: TagsService,
     private userService: UserService,
-    private apollo: Apollo
+    private apollo: Apollo,
+    private apiService: ApiService
   ) {}
 
   isAuthenticated: boolean;
@@ -28,19 +30,26 @@ export class HomeComponent implements OnInit {
   tagsLoaded = false;
 
   ngOnInit() {
-    this.apollo
-      .watchQuery({ query: gql`
-          {
-            devices {
-              data {
-                description
+    
+    try {
+      this.apollo
+        .watchQuery({
+          query: gql`
+            query {
+              devices {
+                data {
+                  id
+                }
               }
             }
-          }
-        ` })
-      .valueChanges.subscribe(result => {
-        console.log(result);
-      });
+          `
+        })
+        .valueChanges.subscribe(result => {
+          console.log(result);
+        });
+    } catch (error) {
+      console.warn("error", error);
+    }
 
     this.userService.isAuthenticated.subscribe(authenticated => {
       this.isAuthenticated = authenticated;

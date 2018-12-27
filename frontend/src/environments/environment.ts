@@ -5,5 +5,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'https://conduit.productionready.io/api'
+  api_url: 'https://conduit.productionready.io/api',
+  api_urlb: 'http://127.0.0.1:8000/query/'
+
 };
