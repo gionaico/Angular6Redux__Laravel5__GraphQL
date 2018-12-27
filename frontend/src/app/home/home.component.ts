@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { ArticleListConfig, TagsService, UserService } from '../core';
 
-import { Apollo } from 'apollo-angular';
+import { Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
 console.log("TEST");
 @Component({
@@ -37,10 +37,11 @@ export class HomeComponent implements OnInit {
               }
             }
           }
-        ` })
+        `, })
       .valueChanges.subscribe(result => {
         console.log(result);
       });
+  
 
     this.userService.isAuthenticated.subscribe(authenticated => {
       this.isAuthenticated = authenticated;
