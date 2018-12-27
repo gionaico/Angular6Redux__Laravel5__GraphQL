@@ -1,0 +1,16 @@
+@import '../../../styles.sass'
+
+.list-devices
+    display: grid
+    box-sizing: content-box
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr))
+    gap: 30px
+
+    .list-devices__device-preview
+        box-shadow: 3px 3px 3px 3px $gn-grey
+        padding: 10px
+
+.pagination
+    box-sizing: border-box
+    max-width: 500px
+    padding: 10px

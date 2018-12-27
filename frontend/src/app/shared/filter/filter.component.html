@@ -1,0 +1,8 @@
+<div class="" align="center" >
+    <a *ngFor="let categor of categories.data"
+         (click)="eventEmiter('all', {category: categor.id})"
+       class="">
+       <button class="btn-beautiful">{{ categor.name }}</button>
+    </a>
+  </div>
+  <br>

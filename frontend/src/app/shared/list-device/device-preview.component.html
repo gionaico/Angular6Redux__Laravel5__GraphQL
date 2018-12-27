@@ -1,0 +1,6 @@
+<a [routerLink]="['/devices', devices.slug]" >
+    <h1>{{ devices.model }}</h1>
+    <img src="../../../assets/media/{{ devices.media }}" width="200" height="200" alt="device">
+    <p>{{ devices.description }}</p>
+    <span>Read more...</span>
+</a>
