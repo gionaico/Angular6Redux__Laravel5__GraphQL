@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DeviceListConfig, UserService } from '../core';
-
+/* ngrx */
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/app.reducers';
+import * as favouritesActions from '../store/actions';
+/* import { FavouritesModel } from '../store/models'; */
 @Component({
   selector: 'app-home-page',
   templateUrl: './home.component.html',
@@ -9,7 +13,8 @@ import { DeviceListConfig, UserService } from '../core';
 export class HomeComponent implements OnInit {
   
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private store: Store<AppState>
     
   ) {}
 
@@ -54,6 +59,14 @@ export class HomeComponent implements OnInit {
         this.setListTo("all"); */
   
   ngOnInit() {    
+    console.warn("this.store", this.store, "--------", this.store.dispatch(new favouritesActions.ActionCargarFavoritos()));
+
+    this.store.dispatch(new favouritesActions.ActionCargarFavoritos());
+
+    this.store.select("favoritos").subscribe(favoritos => {
+      console.warn("favoritos", favoritos);
+    });
+
     this.userService.isAuthenticated.subscribe(
       (authenticated) => {
         this.isAuthenticated = authenticated;
@@ -67,7 +80,9 @@ export class HomeComponent implements OnInit {
       }
     );
 
-  }
+  }/**
+   * End ngOnInit
+   */
 
   setListTo(type: string = '', filters: Object = {}) {
     this.listConfig = {type: type, filters: filters};
