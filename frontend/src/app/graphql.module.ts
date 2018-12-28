@@ -5,7 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ApolloModule, Apollo } from "apollo-angular";
 import { HttpLinkModule, HttpLink } from "apollo-angular-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import cors from "cors";
+
 
 @NgModule({
   exports: [HttpClientModule, ApolloModule, HttpLinkModule]
@@ -15,7 +15,7 @@ export class GraphQLModule {
     apollo.create({
       link: httpLink.create({
         withCredentials: false,
-        uri: "http://127.0.0.1:8000/graphql/"
+        uri: "http://127.0.0.1:8000/graphql/query/"
       }),
       cache: new InMemoryCache()
     });
