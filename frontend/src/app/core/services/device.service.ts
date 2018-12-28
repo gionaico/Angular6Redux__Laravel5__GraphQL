@@ -31,10 +31,10 @@ export class DevicesService {
       );
   }
 
-  /*getAll(): Observable<Device> {
+  getAll(): Observable<Device> {
     return this.apiService.get('/devices')
       .pipe(map(data => data.devices));
-  }*/
+  }
 
   detail(slug): Observable<Device> {
     return this.apiService.get('/devices/' + slug)

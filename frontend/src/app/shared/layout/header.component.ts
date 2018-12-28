@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { User, UserService } from '../../core';
 
 @Component({
@@ -8,7 +8,8 @@ import { User, UserService } from '../../core';
 })
 export class HeaderComponent implements OnInit {
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router,
   ) {}
 
   currentUser: User;
@@ -19,5 +20,10 @@ export class HeaderComponent implements OnInit {
         this.currentUser = userData;
       }
     );
+  }
+
+  logout(){
+    this.userService.purgeAuth();
+    this.router.navigateByUrl('/');
   }
 }

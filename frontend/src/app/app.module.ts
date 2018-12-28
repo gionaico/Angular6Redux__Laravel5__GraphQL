@@ -24,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ApolloModule, APOLLO_OPTIONS } from "apollo-angular";
 import { HttpLinkModule, HttpLink } from "apollo-angular-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import { Angular2SocialLoginModule } from "angular2-social-login";
 
 /* environment */
 import { environment } from "../environments/environment";
@@ -35,10 +36,17 @@ import { appReducers } from "./store/app.reducers";
 import { EffectsModule } from "@ngrx/effects";
 import { effectsArray } from "./store/effects";
 
+let providers = {
+  "google": {
+    "clientId": "182576342220-mud060hgmvvspd7ls0gqfj359r6fk2hm.apps.googleusercontent.com"
+  }
+};
+
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
   imports: [
     BrowserModule,
+    Angular2SocialLoginModule,
     CoreModule,
     SharedModule,
     HomeModule,
@@ -76,36 +84,4 @@ import { effectsArray } from "./store/effects";
 })
 export class AppModule {}
 
-/* import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
-import { HomeModule } from './home/home.module';
-import {
-  FooterComponent,
-  HeaderComponent,
-  SharedModule
-} from './shared';
-import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
-import { GraphQLModule } from './graphql.module';
-
-
-
-
-@NgModule({
-  declarations: [AppComponent, FooterComponent, HeaderComponent],
-  imports: [
-    GraphQLModule,
-    BrowserModule,
-    CoreModule,
-    SharedModule,
-    HomeModule,
-    AuthModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule {} */
+Angular2SocialLoginModule.loadProvidersScripts(providers);
