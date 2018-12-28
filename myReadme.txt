@@ -1,2 +1,2 @@
 How to know your laravel version
-php artisan --version
+    php artisan --version

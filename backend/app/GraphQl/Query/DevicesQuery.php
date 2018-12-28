@@ -12,7 +12,7 @@ use Rebing\GraphQL\Support\SelectFields;
 class DevicesQuery extends Query
 {
     protected $attributes = [
-        'name' => 'Devices Query',
+        'name' => 'DevicesQuery',
         'description' => 'A query of devices'
     ];
 

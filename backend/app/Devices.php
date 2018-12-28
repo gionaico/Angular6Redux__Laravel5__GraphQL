@@ -10,6 +10,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;*/
 use Illuminate\Database\Eloquent\Model;
 use App\Category;
+use App\Favourites;
+
 class Devices extends Model
 {   
     use Filterable, HasSlug;
@@ -29,6 +31,8 @@ class Devices extends Model
     protected $with = [
             'categories'
         ];
+
+    
     public function getCategoryListAttribute()
     {
         $devices = Category::whereId($this->category_id)->firstOrFail();

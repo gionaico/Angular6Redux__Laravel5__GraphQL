@@ -16,6 +16,20 @@ class Favourites extends Model
         'user_id','device_id'
     ];
 
+    /* protected $with = [
+            'devices'
+        ]; */
+    public function device()
+    {
+        return $this->belongsTo(Devices::class);
+    }
+
+    /* public function getDevicesListAttribute()
+    {
+        $devices = Devices::whereId($this->devices_id)->firstOrFail();
+        return $devices;
+    
+    } */
     /* public function devices(){
         return $this->belongsToMany(Devices::class);
     

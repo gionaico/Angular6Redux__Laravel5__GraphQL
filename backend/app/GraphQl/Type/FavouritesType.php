@@ -2,15 +2,15 @@
 
 namespace App\GraphQL\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use GraphQL\Type\Definition\Type;
-
+/* use Rebing\GraphQL\Support\Facades\GraphQL; */
 use App\Favourites;
+use GraphQL\Type\Definition\Type;
+use GraphQL;
 
 class FavouritesType extends GraphQLType
 {
     protected $attributes = [
-        'name' => 'Favourites',
+        'name' => 'FavouritesType',
         'description' => 'A type',
         'model' => Favourites::class,
     ];
@@ -23,13 +23,13 @@ class FavouritesType extends GraphQLType
                 'description' => 'The id of the favourites table'
             ],
             'user_id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::int(),
                 'description' => 'The id of the user'
             ],
             'device' => [
                 'type' => GraphQL::type('devices'),
                 'description' => 'Favourite devices of this user'
-            ]
+            ],
             
         ];
     }

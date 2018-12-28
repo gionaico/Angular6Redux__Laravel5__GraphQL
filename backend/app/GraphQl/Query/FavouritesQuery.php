@@ -18,14 +18,15 @@ class FavouritesQuery extends Query
 
     public function type()
     {
-        return Type::listOf(GraphQL::type('favourites'));
+        /* return Type::listOf(GraphQL::type('favourites')); */
+        return GraphQL::paginate('favourites');
     }
 
     public function args()
     {
         return [
             'id' => [
-                'name' => 'id',
+                'name' => 'user_id',
                 'type' => Type::int()
             ],
         ];
@@ -34,8 +35,8 @@ class FavouritesQuery extends Query
     public function resolve($root, $args, SelectFields $fields){
         
         $where = function ($query) use ($args) {
-            if (isset($args['id'])) {
-                $query->where('user_id',$args['id']);
+            if (isset($args['user_id'])) {
+                $query->where('user_id',$args['user_id']);
             }
         };
 
