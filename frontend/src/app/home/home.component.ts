@@ -36,8 +36,9 @@ export class HomeComponent implements OnInit {
         .watchQuery({
           query: gql`
             query {
-              devices {
-                data {
+              devices{
+                data{
+                  description
                   id
                 }
               }
