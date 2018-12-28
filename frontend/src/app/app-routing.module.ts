@@ -17,7 +17,15 @@ const routes: Routes = [
   {
     path: 'article',
     loadChildren: './article/article.module#ArticleModule'
-  }
+  },
+  {
+    path: 'contact',
+    loadChildren: './contact/contact.module#ContactModule'
+  },
+  {
+    path: 'devices',
+    loadChildren: './device/device.module#DeviceModule'
+  },
 ];
 
 @NgModule({

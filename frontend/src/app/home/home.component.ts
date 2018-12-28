@@ -1,35 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { DeviceListConfig, UserService } from '../core';
 
-import { ArticleListConfig, TagsService, UserService } from '../core';
-
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
-import { ApiService } from "../core/services/api.service";
-console.log("TEST");
 @Component({
-  selector: "app-home-page",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"]
+  selector: 'app-home-page',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
+  
   constructor(
-    private router: Router,
-    private tagsService: TagsService,
-    private userService: UserService,
-    private apollo: Apollo,
-    private apiService: ApiService
+    private userService: UserService
+    
   ) {}
 
   isAuthenticated: boolean;
-  listConfig: ArticleListConfig = {
-    type: "all",
+  listConfig: DeviceListConfig = {
+    type: 'all',
     filters: {}
   };
-  tags: Array<string> = [];
+  categories: Array<string> = [];
   tagsLoaded = false;
 
-  ngOnInit() {
+/*   ngOnInit() {
     
     try {
       this.apollo
@@ -59,24 +51,31 @@ export class HomeComponent implements OnInit {
       if (authenticated) {
         this.setListTo("feed");
       } else {
-        this.setListTo("all");
+        this.setListTo("all"); */
+  
+  ngOnInit() {    
+    this.userService.isAuthenticated.subscribe(
+      (authenticated) => {
+        this.isAuthenticated = authenticated;
+
+        // set the article list accordingly
+        if (authenticated) {
+          this.setListTo('feed');
+        } else {
+          this.setListTo('all');
+        }
       }
-    });
+    );
 
-    this.tagsService.getAll().subscribe(tags => {
-      this.tags = tags;
-      this.tagsLoaded = true;
-    });
   }
 
-  setListTo(type: string = "", filters: Object = {}) {
-    // If feed is requested but user is not authenticated, redirect to login
-    if (type === "feed" && !this.isAuthenticated) {
-      this.router.navigateByUrl("/login");
-      return;
-    }
-
-    // Otherwise, set the list object
-    this.listConfig = { type: type, filters: filters };
+  setListTo(type: string = '', filters: Object = {}) {
+    this.listConfig = {type: type, filters: filters};
   }
+
+  onFilterDat(filter){
+    console.log("home list FILTERDATA", filter);
+    this.listConfig = filter;
+  }
+
 }

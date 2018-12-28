@@ -13,13 +13,10 @@ import cors from "cors";
 export class GraphQLModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {
     apollo.create({
-      //link: httpLink.create({ uri: "http://localhost:4000/graphql" }),
-      //link: httpLink.create({ uri: "http://laravel-angular-graphql-yomogan.c9users.io:8080/graphql" }),
       link: httpLink.create({
         withCredentials: false,
         uri: "http://127.0.0.1:8000/graphql/"
       }),
-
       cache: new InMemoryCache()
     });
   }

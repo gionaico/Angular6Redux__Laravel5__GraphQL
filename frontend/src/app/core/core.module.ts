@@ -7,12 +7,16 @@ import {
   ApiService,
   ArticlesService,
   AuthGuard,
+  DevicesService,
+  CategoryService,
+  ContactService,
   CommentsService,
   JwtService,
   ProfilesService,
   TagsService,
-  UserService
-} from './services';
+  UserService,
+  FavouriteService
+} from "./services";
 
 @NgModule({
   imports: [
@@ -22,12 +26,16 @@ import {
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
     ApiService,
     ArticlesService,
+    DevicesService,
+    CategoryService,
+    ContactService,
     AuthGuard,
     CommentsService,
     JwtService,
     ProfilesService,
     TagsService,
-    UserService
+    UserService,
+    FavouriteService
   ],
   declarations: []
 })
