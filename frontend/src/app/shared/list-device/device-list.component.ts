@@ -24,14 +24,23 @@ export class DeviceListComponent {
     filters: {}
   };
   ngOnInit() {
-   /* this.route.data.subscribe((data: { devices: Device }) => {
+    this.route.data.subscribe((data: { devices: Device }) => {
       this.devices = data.devices;
 
-      this.deviceService.getDevices().subscribe(result => {
+      /*this.deviceService.getDevices().subscribe(result => {
         console.log("GRAPHDEVICES", result.data);
         //this.categories = result.data.categories;
-      });
-    });*/
+      });*/
+     /* this.deviceService.getAll().subscribe(
+        data => {
+          console.log("res frontend devices:", data);
+          this.devices = data;
+        },
+        err => {
+          console.log("Error devices", err);
+        }
+      );*/
+    });
   }
 
   /* @Input() limit: number; */

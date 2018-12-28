@@ -54,6 +54,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ApolloModule, APOLLO_OPTIONS } from "apollo-angular";
 import { HttpLinkModule, HttpLink } from "apollo-angular-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import { Angular2SocialLoginModule } from "angular2-social-login";
 
 /* environment */
 import { environment } from "../environments/environment";
@@ -64,10 +65,17 @@ import { appReducers } from "./store/app.reducers";
 import { EffectsModule } from "@ngrx/effects";
 import { effectsArray } from "./store/effects";
 
+let providers = {
+  "google": {
+    "clientId": "182576342220-mud060hgmvvspd7ls0gqfj359r6fk2hm.apps.googleusercontent.com"
+  }
+};
+
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
   imports: [
     BrowserModule,
+    Angular2SocialLoginModule,
     CoreModule,
     SharedModule,
     HomeModule,
@@ -103,3 +111,5 @@ import { effectsArray } from "./store/effects";
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+Angular2SocialLoginModule.loadProvidersScripts(providers);
