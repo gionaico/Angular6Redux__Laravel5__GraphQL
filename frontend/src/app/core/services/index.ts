@@ -10,3 +10,4 @@ export * from './device.service';
 export * from './category.service';
 export * from './contact.service';
 export * from "./favourites.service";
+export * from './cart.service';

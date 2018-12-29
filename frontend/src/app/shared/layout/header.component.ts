@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User, UserService } from '../../core';
+import { User, UserService, CartService } from '../../core';
 
 @Component({
   selector: 'app-layout-header',
@@ -9,6 +9,7 @@ import { User, UserService } from '../../core';
 export class HeaderComponent implements OnInit {
   constructor(
     private userService: UserService,
+    private cartService: CartService,
     private router: Router,
   ) {}
 
@@ -20,6 +21,10 @@ export class HeaderComponent implements OnInit {
         this.currentUser = userData;
       }
     );
+  }
+
+  totalProd(){
+    return this.cartService.totalProd();
   }
 
   logout(){

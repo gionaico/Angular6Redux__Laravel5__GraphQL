@@ -46,6 +46,6 @@ Route::group(['namespace' => 'Api'], function () {
 
     Route::resource('devices', 'DeviceController');
     Route::resource('category', 'CategoryController');
-    //Route::get('devices/{slug}', 'DeviceController@show');
+    Route::resource('pedidos', 'ProdVentasController');
 
 });

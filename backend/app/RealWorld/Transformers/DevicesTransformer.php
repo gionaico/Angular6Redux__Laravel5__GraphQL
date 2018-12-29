@@ -10,6 +10,7 @@ class DevicesTransformer extends Transformer
     {
 
         return [
+            'id'        => $data['id'],
             'slug'        => $data['slug'],
             'model'       => $data['model'],
             'description' => $data['description'],

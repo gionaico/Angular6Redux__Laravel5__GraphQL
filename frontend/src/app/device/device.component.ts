@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Device, DevicesService } from '../core';
+import { Device, DevicesService, CartService } from '../core';
 //import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
@@ -16,11 +16,10 @@ export class DeviceComponent implements OnInit {
   isSubmitting = false;
   
   constructor(
-    //private cartService: CartService,
+    private cartService: CartService,
     private deviceService: DevicesService,
     private route: ActivatedRoute,
-    private router: Router,
-    //public toastr: ToastrManager
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -48,9 +47,9 @@ export class DeviceComponent implements OnInit {
     );
   }
 
-  /*addCart(Product){
+  addCart(Product){
     console.log("DEVICE PROD",Product);
     this.cartService.addItem(Product);
-  }*/
+  }
 }
 
