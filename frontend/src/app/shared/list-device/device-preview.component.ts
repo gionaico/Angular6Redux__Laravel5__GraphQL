@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Device } from '../../core';
+import { Device, UserService } from "../../core";
 
 @Component({
   selector: "app-device-preview",
@@ -8,9 +8,13 @@ import { Device } from '../../core';
   templateUrl: "./device-preview.component.html"
 })
 export class DevicePreviewComponent {
+  constructor(
+    private userService: UserService
+  ) {}
+
   @Input() devices: Device;
 
-  onToggleFavorite(favorited: boolean) {
+ /*  onToggleFavorite(favorited: boolean) {
     this.devices["favorited"] = favorited;
 
     if (favorited) {
@@ -18,5 +22,12 @@ export class DevicePreviewComponent {
     } else {
       this.devices["favoritesCount"]--;
     }
+  } */
+
+  favourite(device) {
+    console.log("this.userService.getCurrentUser()", this.userService.getCurrentUser());
+    
+    console.log(device);
+    alert("yess");
   }
 }

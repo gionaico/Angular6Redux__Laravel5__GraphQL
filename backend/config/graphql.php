@@ -13,6 +13,7 @@ use App\GraphQL\Type\CategoriesType;
 use App\GraphQL\Query\FavouritesQuery;
 use App\GraphQL\Type\FavouritesType;
 
+use App\GraphQL\Mutation\FavouritesMutation;
 
 return [
     'prefix' => 'graphql',
@@ -29,7 +30,9 @@ return [
                 'favourites' => FavouritesQuery::class,
                 //'users' => UsersQuery::class,
             ],
-            
+            'mutation' => [
+                'FavouritesMutation' => FavouritesMutation::class,
+            ]
             
         ],
     ],

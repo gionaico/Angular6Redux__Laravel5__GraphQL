@@ -7,6 +7,7 @@ use App\Favourites;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
+
 use Rebing\GraphQL\Support\SelectFields;
 
 class FavouritesQuery extends Query
@@ -26,8 +27,8 @@ class FavouritesQuery extends Query
     {
         return [
             'id' => [
-                'name' => 'user_id',
-                'type' => Type::int()
+                'name' => 'user',
+                'type' => Type::string()
             ],
         ];
     }
@@ -35,8 +36,8 @@ class FavouritesQuery extends Query
     public function resolve($root, $args, SelectFields $fields){
         
         $where = function ($query) use ($args) {
-            if (isset($args['user_id'])) {
-                $query->where('user_id',$args['user_id']);
+            if (isset($args['user'])) {
+                $query->where('user',$args['user']);
             }
         };
 

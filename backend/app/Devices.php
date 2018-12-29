@@ -23,7 +23,7 @@ class Devices extends Model
      * @var array
      */
     protected $fillable = [
-        'slug','model', 'description', 'price', 'battery', 'brand', 
+        'slug','id','model', 'description', 'price', 'battery', 'brand', 
         'camera','category_id','media'
     ];
 

@@ -13,7 +13,7 @@ class Favourites extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id','device_id'
+        'user','device_id'
     ];
 
     /* protected $with = [

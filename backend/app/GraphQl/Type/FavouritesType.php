@@ -22,13 +22,19 @@ class FavouritesType extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of the favourites table'
             ],
-            'user_id' => [
-                'type' => Type::int(),
+            'user' => [
+                'type' => Type::string(),
                 'description' => 'The id of the user'
             ],
             'device' => [
                 'type' => GraphQL::type('devices'),
                 'description' => 'Favourite devices of this user'
+            ],
+            'add' => [
+                'type' => Type::boolean(),
+            ],
+            'delete' => [
+                'type' => Type::boolean(),
             ],
             
         ];

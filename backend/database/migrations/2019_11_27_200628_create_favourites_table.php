@@ -15,12 +15,12 @@ class CreateFavouritesTable extends Migration
     {
         Schema::create('favourites', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->string('user');
             $table->unsignedInteger('device_id');
             $table->timestamps();
 
-            $table->foreign('user_id')
-                ->references('id')
+            $table->foreign('user')
+                ->references('username')
                 ->on('users')
                 ->onDelete('cascade');
 
