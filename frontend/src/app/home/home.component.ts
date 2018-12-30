@@ -4,6 +4,7 @@ import { DeviceListConfig, UserService } from '../core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.reducers';
 import * as favouritesActions from '../store/actions';
+import * as cartActions from '../store/actions';
 /* import { FavouritesModel } from '../store/models'; */
 @Component({
   selector: 'app-home-page',
@@ -66,6 +67,7 @@ export class HomeComponent implements OnInit {
     this.store.select("favoritos").subscribe(favoritos => {
       console.warn("favoritos", favoritos);
     });
+    //console.warn("this.store", this.store, "--------", this.store.dispatch(new cartActions.ActionLoadPriceTotal()));
 
     this.userService.isAuthenticated.subscribe(
       (authenticated) => {

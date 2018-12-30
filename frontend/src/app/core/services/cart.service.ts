@@ -32,7 +32,7 @@ export class CartService {
         localStorage.setItem("cart", JSON.stringify(this.items));
     }
 
-    total() {
+    total(){
         return this.items.map(item => item.price)
             .reduce((prev, price) => prev + parseFloat(price), 0)
     }
@@ -47,7 +47,7 @@ export class CartService {
             return JSON.parse(localStorage.getItem("cart")).length;
     }
 
-    getCart() {
+    getCart(): Observable<any> {
         if (localStorage.getItem("cart") != null)
             return JSON.parse(localStorage.getItem("cart"));
     }

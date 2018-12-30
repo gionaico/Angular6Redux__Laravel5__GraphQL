@@ -5,6 +5,10 @@ import { default as swal } from 'sweetalert2'
 import { UserService, User } from '../../../src/app/core';
 import { ToastrService } from 'ngx-toastr';
 
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/app.reducers';
+import * as cartActions from '../store/actions';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -13,22 +17,21 @@ import { ToastrService } from 'ngx-toastr';
 export class CartComponent implements OnInit {
   currentUser: User;
   test: string;
+  total_price:[];
   constructor(
     private cartService: CartService,
     private userService: UserService,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit() {
     let cartSession = localStorage.getItem("cart");
-    if (cartSession != null) {
-      this.cartService.items = JSON.parse(cartSession);
-    }
+    if (cartSession != null) this.cartService.items = JSON.parse(cartSession);
   }
 
-  items(): Product[] {
-    return this.cartService.items;
-  }
+  items(): Product[] {return this.cartService.items;}
+
   removeItem(Product) {
     console.log("REMOVEITEM", Product);
     let cart = this.cartService;
@@ -53,7 +56,9 @@ export class CartComponent implements OnInit {
   }
 
   total() {
-    return this.cartService.total();
+    this.store.dispatch(new cartActions.ActionLoadPriceTotal());
+    this.store.select("cart_total").subscribe(res => {this.total_price = res.cart_total;});
+    return this.total_price;
   }
 
   clearCart() {
@@ -72,20 +77,16 @@ export class CartComponent implements OnInit {
           'Productos fuera!',
           'Carrito vaciado satisfactoriamente',
           'success'
-        )
+        );
         return cart.clearCart();
       }
     });
-
   }
 
   buyCart() {
     this.userService.currentUser.subscribe(
-      (userData) => {
-        console.log("currentUserCART", userData);
-        this.currentUser = userData;
-      }
-    );
+      (userData) => {this.currentUser = userData;});
+
     let priceCart = this.cartService.total();
     let deviceCart = this.cartService.getCart();
     let dataCart = {
