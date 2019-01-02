@@ -11,6 +11,21 @@
 	<div>Total: {{ total() }}€</div>
 	<button (click)="clearCart()">Vaciar carrito</button>
 	<button (click)="buyCart()">Comprar</button>
+	<!--<ngx-paypal [config]="payPalConfig"></ngx-paypal>-->
+	
+	   
+	 <!-- <stripe-card
+		#stripeCard
+		(catch) = "onStripeError($event)"
+		[(invalid)] = "invalidError"
+		(tokenChange) = "setStripeToken($event)"
+	  ></stripe-card>
+	  <button type="button" (click)="stripeCard.createToken(extraData)">createToken</button>-->
+	
+
+	  <button (click)="handlePayment()">
+		Add Credits to your Account
+	  </button>
 </ul>
 
 <ul class="navbar-nav cart-items" *ngIf="items().length == 0">

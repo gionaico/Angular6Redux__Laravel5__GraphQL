@@ -36,6 +36,12 @@ import { appReducers } from "./store/app.reducers";
 import { EffectsModule } from "@ngrx/effects";
 import { effectsArray,effectsNumber } from "./store/effects";
 
+/* Paypal */
+import { NgxPayPalModule } from 'ngx-paypal';
+
+/* Stripe */
+import { Module as StripeModule } from "stripe-angular"
+
 let providers = {
   "google": {
     "clientId": "182576342220-mud060hgmvvspd7ls0gqfj359r6fk2hm.apps.googleusercontent.com"
@@ -56,11 +62,15 @@ let providers = {
     ApolloModule,
     HttpLinkModule,
     BrowserAnimationsModule,
+    NgxPayPalModule,
     ToastrModule.forRoot(),
+    StripeModule.forRoot(),
     /* @ngrx REDUX */
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot(effectsArray),
-    EffectsModule.forRoot(effectsNumber),
+    EffectsModule.forRoot(
+      [ effectsArray,
+        effectsNumber
+      ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode

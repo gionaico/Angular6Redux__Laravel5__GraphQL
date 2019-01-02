@@ -8,5 +8,5 @@ export interface AppState {
 
 export const appReducers: ActionReducerMap<AppState> = {
   favoritos: reducers.favouritesReducer,
-  cart_total: reducers.CartReducer
+  cart_total: reducers.CartReducer,
 };

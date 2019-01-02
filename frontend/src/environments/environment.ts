@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   api_url: 'http://127.0.0.1:8000/api',
+  stripeKey: 'pk_test_6K8hLzMgtuRmL2dXL429W3os',
   //api_urlb: 'http://127.0.0.1:8000/query/'
 
 };

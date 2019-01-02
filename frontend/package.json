@@ -41,6 +41,8 @@
     "graphql-tag": "^2.10.0",
     "marked": "^0.3.9",
     "ng6-toastr-notifications": "^1.0.4",
+    "ngx-paypal": "^4.0.1",
+    "ngx-stripe": "^6.0.0-rc.0",
     "ngx-toastr": "^9.1.1",
     "node-sass": "^4.11.0",
     "rxjs": "^6.2.1",
@@ -69,6 +71,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "pre-commit": "^1.2.2",
     "protractor": "~5.1.2",
+    "stripe-angular": "^0.3.0",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": "3.1.6"

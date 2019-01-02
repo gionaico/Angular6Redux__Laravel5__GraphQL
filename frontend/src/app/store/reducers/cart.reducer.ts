@@ -17,28 +17,27 @@ const estadoInicial: CartState = {
 };
 
 
-export function CartReducer(state = estadoInicial, action:fromCart.actionsCart): CartState{
-    console.log("REDUCERACTION",action);
+export function CartReducer(state = estadoInicial, action: fromCart.actionsCart): CartState {
+    //console.log("REDUCERACTION", action);
     switch (action.type) {
         case fromCart.LOAD_CART_PRICE_TOTAL:
             return {
                 ...state,
-                loading:true,
+                loading: true,
                 error: null
             };
-        
+
         case fromCart.LOAD_CART_PRICE_TOTAL_SUCCESS:
-        console.log("LOAD_CART_PRICE_TOTAL_SUCCESS");
             return {
                 ...state,
                 loading: false,
                 loaded: true,
                 cart_total: action.cart_total
             };
-        
+
         case fromCart.LOAD_CART_PRICE_TOTAL_FAIL:
             console.warn("action.payload", action.payload);
-            
+
             return {
                 ...state,
                 loading: false,
@@ -46,11 +45,10 @@ export function CartReducer(state = estadoInicial, action:fromCart.actionsCart):
                 error: {
                     status: action.payload.status,
                     message: action.payload.message,
-                    url: action.payload.url,
-                    ye:"ff"
+                    url: action.payload.url
                 }
             };
-    
+
         default:
             return state;
     }
