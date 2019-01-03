@@ -38,12 +38,6 @@
       Home
     </a>
   </li>
-
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/contact" routerLinkActive="active">
-      Contact
-    </a>
-  </li>
   
   <li class="nav-item">
     <a class="nav-link" [routerLink]="['/profile', currentUser.username]" routerLinkActive="active">
@@ -57,13 +51,19 @@
 
   <li class="nav-item">
     <a class="nav-link" routerLink='/cart/devices' routerLinkActive="active">
-      Carrito {{ totalProd() }}
+      <img src="../../../assets/icons/cart.svg" alt="carrito" width="30" height="30"> {{ totalProd() }}
     </a>
   </li>
 
   <li class="nav-item">
+    <a class="nav-link" routerLink="/contact" routerLinkActive="active">
+      Contact
+    </a>
+  </li>
+  
+  <li class="nav-item">
     <a class="nav-link" routerLinkActive="active" (click)="logout()">
-      <i class="ion-compose"></i>Logout
+      Logout
     </a>
   </li>
 </ul>

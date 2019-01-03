@@ -1,6 +1,6 @@
 <div class="home-page">
 
-  <div class="banner" *appShowAuthed="false">
+  <div class="banner">
     <div class="container">
       <h1 class="logo-font">Contact</h1>
       <p>Contacta con nosotros</p>
@@ -9,22 +9,25 @@
   
   <div class="container page">
     <app-list-errors [errors]="errors"></app-list-errors>
-    <form [formGroup]="articleForm" novalidate>
+    <form [formGroup]="contactForm" novalidate>
           <fieldset [disabled]="isSubmitting">
             <fieldset class="form-group">
               <input class="form-control form-control-lg"
                 formControlName="name"
                 type="text"
                 placeholder="Your name" />
-              <div *ngIf="articleForm.get('name').errors && (articleForm.get('name').dirty || articleForm.get('name').touched)" class="alert alert-danger">
-                <p *ngIf="articleForm.get('name').errors['required']">
+              <div *ngIf="contactForm.get('name').errors && (contactForm.get('name').dirty || contactForm.get('name').touched)" class="alert alert-danger">
+                <p *ngIf="contactForm.get('name').errors['required']">
                   Name required
                 </p>
-                <p *ngIf="articleForm.get('name').errors['minlength']">
+                <p *ngIf="contactForm.get('name').errors['minlength']">
                   Name min 4 characters
                 </p>
-                <p *ngIf="articleForm.get('name').errors['maxlength']">
+                <p *ngIf="contactForm.get('name').errors['maxlength']">
                   Name max 15 characters
+                </p>
+                <p *ngIf="contactForm.get('name').errors['pattern']">
+                  Name not valid
                 </p>
               </div>
             </fieldset>             
@@ -34,11 +37,11 @@
                 formControlName="email"
                 type="email"
                 placeholder="Your email" />
-              <div *ngIf="articleForm.get('email').errors && (articleForm.get('email').dirty || articleForm.get('email').touched)" class="alert alert-danger">
-                <p *ngIf="articleForm.get('email').errors['email']">
+              <div *ngIf="contactForm.get('email').errors && (contactForm.get('email').dirty || contactForm.get('email').touched)" class="alert alert-danger">
+                <p *ngIf="contactForm.get('email').errors['email']">
                   Email invalido
                 </p>
-                <p *ngIf="articleForm.get('email').errors['required']">
+                <p *ngIf="contactForm.get('email').errors['required']">
                   Email requerido
                 </p>
               </div>
@@ -49,8 +52,8 @@
                 <option value="Buys">Buys</option>
                 <option value="Sugerations">Sugerations</option>
               </select>
-              <div *ngIf="articleForm.get('subject').errors && (articleForm.get('subject').dirty || articleForm.get('subject').touched)" class="alert alert-danger">
-                <p *ngIf="articleForm.get('subject').errors['required']">
+              <div *ngIf="contactForm.get('subject').errors && (contactForm.get('subject').dirty || contactForm.get('subject').touched)" class="alert alert-danger">
+                <p *ngIf="contactForm.get('subject').errors['required']">
                   subject requerido
                 </p>
               </div>
@@ -60,27 +63,27 @@
               <textarea class="form-control"
                 formControlName="comment"
                 rows="8"
-                placeholder="Write your article (in markdown)">
+                placeholder="Write your comment (in markdown)">
               </textarea>
-              <div *ngIf="articleForm.get('comment').errors && (articleForm.get('comment').dirty || articleForm.get('comment').touched)" class="alert alert-danger">
-                <p *ngIf="articleForm.get('comment').errors['required']">
+              <div *ngIf="contactForm.get('comment').errors && (contactForm.get('comment').dirty || contactForm.get('comment').touched)" class="alert alert-danger">
+                <p *ngIf="contactForm.get('comment').errors['required']">
                   comment requerido
                 </p>
-                <p *ngIf="articleForm.get('comment').errors['minlength']">
+                <p *ngIf="contactForm.get('comment').errors['minlength']">
                   comment min 8 characters
                 </p>
-                <p *ngIf="articleForm.get('comment').errors['maxlength']">
+                <p *ngIf="contactForm.get('comment').errors['maxlength']">
                   comment max 200 characters
+                </p>
+                <p *ngIf="contactForm.get('comment').errors['pattern']">
+                  Comment not valid
                 </p>
               </div>
             </fieldset>
 
-            <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="submitForm()" [disabled]="!articleForm.valid">
+            <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="submitForm()" [disabled]="!contactForm.valid">
               SEND
             </button>
-            <button (click)="showToaster()">  
-              Show Toaster
-          </button>  
           </fieldset>
         </form>
   </div>

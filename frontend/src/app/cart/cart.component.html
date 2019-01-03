@@ -1,35 +1,30 @@
-<ul class="navbar-nav cart-items" *ngIf="items().length">
-	<li class="nav-item" *ngFor="let product of items()">
-		<div>
-			<img src="../../assets/media/{{product.media}}" alt="{{product.brand}}" width="50" height="50">
-			{{ product.brand }}
-			{{ product.price }}€
-			<button (click)="removeItem(product)">Delete</button>
+<div class="banner">
+	<div align="center">
+	  <h1>Carrito</h1>
+	  <p>Tómese su tiempo, pero rápido que se agotan</p>
+	</div>
+  </div>
+<section *ngIf="items().length" class="container-cart">
+	<ul class="container-flex__column table">
+		<div class="nav-item cursor-cart" *ngFor="let product of items()">
+			<a [routerLink]="['/devices', product.slug]">
+				<img src="../../assets/media/{{product.media}}" alt="{{product.brand}}" width="50" height="50">
+				{{ product.brand }}
+				{{ product.price }}€
+				
+			</a>
+			<button class="pointer" (click)="removeItem(product)">
+				<img src="../../assets/icons/papelera.svg" alt="papelera" width="20" height="20">
+			</button>
 		</div>
-		
-	</li>
-	<div>Total: {{ total() }}€</div>
-	<button (click)="clearCart()">Vaciar carrito</button>
-	<button (click)="buyCart()">Comprar</button>
-	<!--<ngx-paypal [config]="payPalConfig"></ngx-paypal>-->
-	
-	   
-	 <!-- <stripe-card
-		#stripeCard
-		(catch) = "onStripeError($event)"
-		[(invalid)] = "invalidError"
-		(tokenChange) = "setStripeToken($event)"
-	  ></stripe-card>
-	  <button type="button" (click)="stripeCard.createToken(extraData)">createToken</button>-->
-	
+		<div align="center">Total: {{ total() }}€</div>
+	</ul>
+	<div class="margin-elements" align="center">
+		<button class="btn-normal__blue pointer" (click)="clearCart()">Vaciar carrito</button>
+		<button class="btn-normal__blue pointer" (click)="handlePayment()">Pagar por Stripe</button>
+	</div>
+</section>
 
-	  <button (click)="handlePayment()">
-		Add Credits to your Account
-	  </button>
-</ul>
-
-<ul class="navbar-nav cart-items" *ngIf="items().length == 0">
-	<li class="nav-item">
-		Su carrito esta vacio
-	</li>
-</ul>
+<section class="container-flex__row" *ngIf="items().length == 0">
+	Su carrito esta vacio
+</section>

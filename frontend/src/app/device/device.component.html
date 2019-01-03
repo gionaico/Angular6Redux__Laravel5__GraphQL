@@ -1,22 +1,33 @@
 <div class="home-page">
 
-    <div class="banner" *appShowAuthed="false">
-      <div align="center">
-        <h1>Detail Devices</h1>
-        <p>Su mejor tienda de dispositivos</p>
-      </div>
-    </div>
-    
-    <div class="container page">
-        <li *ngFor="let device of devices" class="tag-default tag-pill tag-outline">
-      <p>Modelo:{{ device.model }}</p>
-      <p>Marca:{{ device.brand }}</p>
-      <p>Descripcion:{{ device.description }}</p>
-      <p>Camara:{{ device.camera }}</p>
-      <p>Precio:{{ device.price }}</p>
-      <button type="button" class="btn" (click)="addCart(device)">
-        Añadir al carrito
-      </button>
-      </li>
+  <div class="banner" *appShowAuthed="true">
+    <div align="center">
+      <h1>Detail Devices</h1>
+      <p>Su mejor tienda de dispositivos</p>
     </div>
   </div>
+
+  <section>
+    <li *ngFor="let device of devices" class="tag-default tag-pill tag-outline container-flex__row">
+      <img src="../../assets/media/{{ device.media }}" alt="device">
+
+      <div class="container-flex__column margin-elements">
+        <label for="model" class="margin-elements">Modelo:{{ device.model }}</label>
+        <label for="brand" class="margin-elements">Marca:{{ device.brand }}</label>
+        <label for="camera" class="margin-elements">Camara:{{ device.camera }}</label>
+        <label for="price" class="margin-elements">Precio:{{ device.price }}€</label>
+        <button type="button" class="btn margin-elements" (click)="addCart(device)">
+          <img src="../../assets/icons/cart.svg" alt="carrito" width="30" height="30">
+        </button>
+      </div>
+      <!--<p>Modelo:{{ device.model }}</p>
+      <p>Marca:{{ device.brand }}</p>
+      <p>Descripcion:{{ device.description }}</p>
+      <p></p>
+      <p>Precio:{{ device.price }}</p>-->
+
+    </li>
+
+
+  </section>
+</div>
