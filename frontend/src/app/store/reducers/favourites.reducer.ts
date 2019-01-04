@@ -34,7 +34,7 @@ export function favouritesReducer(state = estadoInicial, action: fromFavoritos.a
                 ...state,
                 loading: false,
                 loaded: true,
-                favourites: action.favourites
+                favourites: action.favourites.data.favourites.data
             };
         
         case fromFavoritos.CARGAR_FAVORITOS_FAIL:

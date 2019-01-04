@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DeviceListConfig, UserService } from '../core';
+import { DeviceListConfig, UserService, User} from '../core';
 /* ngrx */
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.reducers';
@@ -7,27 +7,26 @@ import * as favouritesActions from '../store/actions';
 import * as cartActions from '../store/actions';
 /* import { FavouritesModel } from '../store/models'; */
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.sass']
+  selector: "app-home-page",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.sass"]
 })
 export class HomeComponent implements OnInit {
-  
+  currentUser: User;
   constructor(
     private userService: UserService,
     private store: Store<AppState>
-    
   ) {}
 
-  isAuthenticated: boolean;
+/*   isAuthenticated: boolean;
   listConfig: DeviceListConfig = {
-    type: 'all',
+    type: "all",
     filters: {}
   };
   categories: Array<string> = [];
-  tagsLoaded = false;
+  tagsLoaded = false; */
 
-/*   ngOnInit() {
+  /*   ngOnInit() {
     
     try {
       this.apollo
@@ -58,41 +57,41 @@ export class HomeComponent implements OnInit {
         this.setListTo("feed");
       } else {
         this.setListTo("all"); */
-  
-  ngOnInit() {    
-    console.warn("this.store", this.store, "--------", this.store.dispatch(new favouritesActions.ActionCargarFavoritos()));
 
+  ngOnInit() {
+    /* console.warn("this.store", this.store, "--------", this.store.dispatch(new favouritesActions.ActionCargarFavoritos())); */
+    this.userService.currentUser.subscribe(userData => {
+      this.currentUser = userData;
+    });
+    console.log(this.currentUser)
     this.store.dispatch(new favouritesActions.ActionCargarFavoritos());
 
     this.store.select("favoritos").subscribe(favoritos => {
       console.warn("favoritos", favoritos);
-    });
+    }); 
     //console.warn("this.store", this.store, "--------", this.store.dispatch(new cartActions.ActionLoadPriceTotal()));
 
-    this.userService.isAuthenticated.subscribe(
-      (authenticated) => {
-        this.isAuthenticated = authenticated;
+  /*   this.userService.isAuthenticated.subscribe(authenticated => {
+      this.isAuthenticated = authenticated;
 
-        // set the article list accordingly
-        if (authenticated) {
-          this.setListTo('feed');
-        } else {
-          this.setListTo('all');
-        }
+      // set the article list accordingly
+      if (authenticated) {
+        this.setListTo("feed");
+      } else {
+        this.setListTo("all");
       }
-    );
-
-  }/**
+    }); */
+  }
+  /**
    * End ngOnInit
    */
 
-  setListTo(type: string = '', filters: Object = {}) {
-    this.listConfig = {type: type, filters: filters};
+  /* setListTo(type: string = "", filters: Object = {}) {
+    this.listConfig = { type: type, filters: filters };
   }
 
-  onFilterDat(filter){
+  onFilterDat(filter) {
     console.log("home list FILTERDATA", filter);
     this.listConfig = filter;
-  }
-
+  } */
 }

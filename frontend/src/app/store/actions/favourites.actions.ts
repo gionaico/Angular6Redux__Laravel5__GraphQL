@@ -22,7 +22,7 @@ export class ActionCargarFavoritosFail implements Action {
 export class ActionCargarFavoritosSuccess implements Action {
     readonly type = CARGAR_FAVORITOS_SUCCESS;
     /* constructor(public favourites: FavouritesModel[] ) { */
-    constructor(public favourites: any[]) {
+    constructor(public favourites) {
         console.error("eeee", this.favourites);
     }
 }

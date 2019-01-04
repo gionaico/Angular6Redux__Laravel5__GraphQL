@@ -3,32 +3,36 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'settings',
-    loadChildren: './settings/settings.module#SettingsModule'
+    path: "settings",
+    loadChildren: "./settings/settings.module#SettingsModule"
   },
   {
-    path: 'profile',
-    loadChildren: './profile/profile.module#ProfileModule'
+    path: "profile",
+    loadChildren: "./profile/profile.module#ProfileModule"
   },
   {
-    path: 'editor',
-    loadChildren: './editor/editor.module#EditorModule'
+    path: "editor",
+    loadChildren: "./editor/editor.module#EditorModule"
   },
   {
-    path: 'article',
-    loadChildren: './article/article.module#ArticleModule'
+    path: "article",
+    loadChildren: "./article/article.module#ArticleModule"
   },
   {
-    path: 'contact',
-    loadChildren: './contact/contact.module#ContactModule'
+    path: "contact",
+    loadChildren: "./contact/contact.module#ContactModule"
   },
   {
-    path: 'devices',
-    loadChildren: './device/device.module#DeviceModule'
+    path: "devices",
+    loadChildren: "./device/device.module#DeviceModule"
   },
   {
-    path: 'cart',
-    loadChildren: './cart/cart.module#CartModule'
+    path: "devices-list",
+    loadChildren: "./deviceList/deviceList.module#DeviceListModule"
+  },
+  {
+    path: "cart",
+    loadChildren: "./cart/cart.module#CartModule"
   }
 ];
 
