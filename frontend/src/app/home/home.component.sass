@@ -2,3 +2,13 @@
 
 .container-device-list 
     max-width: $gn-width
+    
+.list-devices
+    display: grid
+    box-sizing: content-box
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr))
+    gap: 30px
+
+    .list-devices__device-preview
+        box-shadow: 3px 3px 3px 3px $gn-grey
+        padding: 10px

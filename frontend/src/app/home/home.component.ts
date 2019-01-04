@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DeviceListConfig, UserService, User} from '../core';
+import { DeviceListConfig, FavouriteService, UserService, User} from '../core';
 /* ngrx */
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.reducers';
@@ -13,50 +13,15 @@ import * as cartActions from '../store/actions';
 })
 export class HomeComponent implements OnInit {
   currentUser: User;
+  favouriteDevices = [];
   constructor(
     private userService: UserService,
+    private favouriteService: FavouriteService,
     private store: Store<AppState>
-  ) {}
+    ) {
 
-/*   isAuthenticated: boolean;
-  listConfig: DeviceListConfig = {
-    type: "all",
-    filters: {}
-  };
-  categories: Array<string> = [];
-  tagsLoaded = false; */
+  }
 
-  /*   ngOnInit() {
-    
-    try {
-      this.apollo
-        .watchQuery({
-          query: gql`
-            query {
-              devices{
-                data{
-                  description
-                  id
-                }
-              }
-            }
-          `
-        })
-        .valueChanges.subscribe(result => {
-          console.log(result);
-        });
-    } catch (error) {
-      console.warn("error", error);
-    }
-
-    this.userService.isAuthenticated.subscribe(authenticated => {
-      this.isAuthenticated = authenticated;
-
-      // set the article list accordingly
-      if (authenticated) {
-        this.setListTo("feed");
-      } else {
-        this.setListTo("all"); */
 
   ngOnInit() {
     /* console.warn("this.store", this.store, "--------", this.store.dispatch(new favouritesActions.ActionCargarFavoritos())); */
@@ -65,33 +30,25 @@ export class HomeComponent implements OnInit {
     });
     console.log(this.currentUser)
     this.store.dispatch(new favouritesActions.ActionCargarFavoritos());
-
+    
     this.store.select("favoritos").subscribe(favoritos => {
-      console.warn("favoritos", favoritos);
+      this.favouriteDevices=[];
+      console.log("favoritos", favoritos);
+      favoritos.favourites.forEach(element => {
+        if (element.device==undefined)
+          this.favouriteDevices.push(element);
+        else
+          this.favouriteDevices.push(element.device)
+      });
+      /* this.favouriteDevices = favoritos.favourites.map((dev)=>{
+        return dev.device
+      }); */
+      debugger
+      console.log("nuevo", this.favouriteDevices);
     }); 
     //console.warn("this.store", this.store, "--------", this.store.dispatch(new cartActions.ActionLoadPriceTotal()));
+    
+  }/** End ngOnInit*/
 
-  /*   this.userService.isAuthenticated.subscribe(authenticated => {
-      this.isAuthenticated = authenticated;
 
-      // set the article list accordingly
-      if (authenticated) {
-        this.setListTo("feed");
-      } else {
-        this.setListTo("all");
-      }
-    }); */
-  }
-  /**
-   * End ngOnInit
-   */
-
-  /* setListTo(type: string = "", filters: Object = {}) {
-    this.listConfig = { type: type, filters: filters };
-  }
-
-  onFilterDat(filter) {
-    console.log("home list FILTERDATA", filter);
-    this.listConfig = filter;
-  } */
 }

@@ -5,6 +5,16 @@
   </div>
 </div>
 
+
+<!--Device's List -->
+<section class="container-device-list center-by-margin lateral-padding">
+  <div class="list-devices">
+    <app-device-preview *ngFor="let device of favouriteDevices" [devices]="device" class="list-devices__device-preview"></app-device-preview>
+  </div>
+</section>
+
+
+
 <!-- <app-filter-page (filterData)="onFilterDat($event)"></app-filter-page>
 
 <section class="container-device-list center-by-margin lateral-padding">

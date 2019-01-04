@@ -36,6 +36,14 @@ export function favouritesReducer(state = estadoInicial, action: fromFavoritos.a
                 loaded: true,
                 favourites: action.favourites.data.favourites.data
             };
+
+        case fromFavoritos.EDIT_FAVORITOS:
+            return {
+                ...state,
+                loading: false,
+                loaded: true,
+                favourites: action.favourites
+            };
         
         case fromFavoritos.CARGAR_FAVORITOS_FAIL:
             console.warn("action.payload", action.payload);

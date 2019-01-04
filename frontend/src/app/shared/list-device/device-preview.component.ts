@@ -1,6 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Device, UserService, User, FavouriteService} from "../../core";
 import { default as swal } from "sweetalert2";
+/* ngrx */
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/app.reducers';
+import * as favouritesActions from "../../store/actions";
 
 @Component({
   selector: "app-device-preview",
@@ -11,7 +15,8 @@ export class DevicePreviewComponent {
   currentUser: User;
   constructor(
     private userService: UserService,
-    private favouriteService: FavouriteService
+    private favouriteService: FavouriteService,
+    private store: Store<AppState>
   ) {}
 
   @Input() devices: Device;
@@ -33,9 +38,10 @@ export class DevicePreviewComponent {
       "this.userService.getCurrentUser()",
       this.userService.getCurrentUser().username
     );
+
     this.favouriteService.updateFavourite(this.userService.getCurrentUser().username, device.id).subscribe(({ data }) => {
       console.log("got dataplplpl", data.FavouritesMutation.delete);
-      if (data.FavouritesMutation.delete) 
+      if (data.FavouritesMutation.delete) {
         swal({
           type: 'error',
           title: "Deleted from favourites list",
@@ -43,7 +49,22 @@ export class DevicePreviewComponent {
           showConfirmButton: false,
           timer: 3500
         })
-      else
+        this.store.select("favoritos").subscribe(favoritos => {
+          console.log("favoritos", favoritos);
+          
+          let newFavourites=[]
+          
+          favoritos.favourites.filter((dev)=>{
+            if (dev.device.id != device.id) 
+              return dev.device;    
+          }).forEach(currentItem => {
+            newFavourites.push(currentItem.device);
+          });
+          console.log("newFavourites", newFavourites);
+          this.store.dispatch(new favouritesActions.ActionEditFavoritos(newFavourites));
+          /* this.store.dispatch(new favouritesActions.ActionCargarFavoritosSuccess(newFavourites)); */
+        }); 
+      }else
         swal({
           type: "success",
           title: "Add to favourites list",
@@ -52,10 +73,11 @@ export class DevicePreviewComponent {
           timer: 3500
         });
       
+      /* this.store.dispatch(new favouritesActions.ActionCargarFavoritos()); */
 
     }, (error) => {
       console.log('there was an error sending the query', error);
-    });;
+    });
     /* this.userService.currentUser.subscribe(userData => {
       this.currentUser = userData;
     }); */

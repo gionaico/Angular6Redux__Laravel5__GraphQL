@@ -45,7 +45,7 @@ export class FavouriteService {
     });
 
     try {
-      return this.apollo.watchQuery<Query>({ query: gql`
+      return this.apollo.watchQuery<any>({ query: gql`
           query {
             favourites(user: "${this.currentUser.username}"){
               data {
@@ -53,6 +53,8 @@ export class FavouriteService {
                 device {
                   id
                   description
+                  slug
+                  media
                 }
               }
             }
