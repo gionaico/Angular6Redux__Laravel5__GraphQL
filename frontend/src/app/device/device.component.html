@@ -30,4 +30,12 @@
 
 
   </section>
+
+  <h3 class="margin-left margin-elements">Últimos productos visitados</h3>
+  <section class="container-flex__row margin-elements margin-left">
+    <div *ngFor="let devices of getProdVisited()">
+      <img src="../../assets/media/{{ devices.media }}" alt="producto" width="60" height="60">
+    </div>
+  </section>
+
 </div>
