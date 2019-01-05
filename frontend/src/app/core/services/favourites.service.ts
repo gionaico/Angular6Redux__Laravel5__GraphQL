@@ -38,14 +38,14 @@ export class FavouriteService {
   }
   favourites: Object = Array;
   
-
+  
   getFavourites() {
     this.userService.currentUser.subscribe(userData => {
       this.currentUser = userData;
     });
-
     try {
-      return this.apollo.watchQuery<any>({ query: gql`
+      alert("peticion")
+      let q = this.apollo.watchQuery<any>({ query: gql`
           query {
             favourites(user: "${this.currentUser.username}"){
               data {
@@ -54,13 +54,15 @@ export class FavouriteService {
                   id
                   description
                   slug
+                  model
                   media
                 }
               }
             }
           }
         ` }).valueChanges;
-
+        
+        return q
     } catch (error) {
       console.warn("error", error);
     }

@@ -1,8 +1,17 @@
-<button 
+<!-- <button 
     type="button" 
     class="btn btn-large btn-block btn-warning"
     *appShowAuthed="true"
-    (click)="favourite(devices)">add Favourite</button>
+    (click)="favourite(devices)">add Favourite</button> -->
+    
+<img 
+    *appShowAuthed="true" 
+    (click)="favourite(devices)" 
+    src="../../../assets/icons/estrella.svg" 
+    width="30"
+    height="30" 
+    style="cursor:pointer;"
+    alt="favourite">
 
 <a [routerLink]="['/devices', devices.slug]" >
     <h1>{{ devices.model }}</h1>

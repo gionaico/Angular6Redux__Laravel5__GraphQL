@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-
+  
   ngOnInit() {
     /* console.warn("this.store", this.store, "--------", this.store.dispatch(new favouritesActions.ActionCargarFavoritos())); */
     this.userService.currentUser.subscribe(userData => {
@@ -33,17 +33,12 @@ export class HomeComponent implements OnInit {
     
     this.store.select("favoritos").subscribe(favoritos => {
       this.favouriteDevices=[];
-      console.log("favoritos", favoritos);
-      favoritos.favourites.forEach(element => {
-        if (element.device==undefined)
-          this.favouriteDevices.push(element);
-        else
-          this.favouriteDevices.push(element.device)
-      });
-      /* this.favouriteDevices = favoritos.favourites.map((dev)=>{
+      console.log("favoritos home", favoritos);
+      
+      this.favouriteDevices = favoritos.favourites.map((dev)=>{
         return dev.device
-      }); */
-      debugger
+      });
+      /* debugger */
       console.log("nuevo", this.favouriteDevices);
     }); 
     //console.warn("this.store", this.store, "--------", this.store.dispatch(new cartActions.ActionLoadPriceTotal()));
