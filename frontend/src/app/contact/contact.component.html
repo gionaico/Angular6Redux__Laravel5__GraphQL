@@ -1,89 +1,90 @@
 <div class="home-page">
 
   <div class="banner">
-    <div class="container">
-      <h1 class="logo-font">Contact</h1>
-      <p>Contacta con nosotros</p>
+    <div class="container-ctn">
+      <h1 class="logo-font centrar">Contact</h1>
+      <p class="centrar">Contacta con nosotros</p>
     </div>
   </div>
   
-  <div class="container page">
+  <div class="container-ctn">
     <app-list-errors [errors]="errors"></app-list-errors>
     <form [formGroup]="contactForm" novalidate>
-          <fieldset [disabled]="isSubmitting">
-            <fieldset class="form-group">
-              <input class="form-control form-control-lg"
+          <fieldset [disabled]="isSubmitting" class="fieldset-border">
+            <fieldset class="form-group fieldset-border">
+              <input class="form-control form-control-lg input"
                 formControlName="name"
                 type="text"
                 placeholder="Your name" />
               <div *ngIf="contactForm.get('name').errors && (contactForm.get('name').dirty || contactForm.get('name').touched)" class="alert alert-danger">
-                <p *ngIf="contactForm.get('name').errors['required']">
+                <p class="error-ctn" *ngIf="contactForm.get('name').errors['required']">
                   Name required
                 </p>
-                <p *ngIf="contactForm.get('name').errors['minlength']">
+                <p class="error-ctn" *ngIf="contactForm.get('name').errors['minlength']">
                   Name min 4 characters
                 </p>
-                <p *ngIf="contactForm.get('name').errors['maxlength']">
+                <p class="error-ctn" *ngIf="contactForm.get('name').errors['maxlength']">
                   Name max 15 characters
                 </p>
-                <p *ngIf="contactForm.get('name').errors['pattern']">
+                <p class="error-ctn" *ngIf="contactForm.get('name').errors['pattern']">
                   Name not valid
                 </p>
               </div>
             </fieldset>             
            
-            <fieldset class="form-group">
-              <input class="form-control"
+            <fieldset class="form-group fieldset-border">
+              <input class="form-control input"
                 formControlName="email"
                 type="email"
                 placeholder="Your email" />
               <div *ngIf="contactForm.get('email').errors && (contactForm.get('email').dirty || contactForm.get('email').touched)" class="alert alert-danger">
-                <p *ngIf="contactForm.get('email').errors['email']">
+                <p class="error-ctn" *ngIf="contactForm.get('email').errors['email']">
                   Email invalido
                 </p>
-                <p *ngIf="contactForm.get('email').errors['required']">
+                <p class="error-ctn" *ngIf="contactForm.get('email').errors['required']">
                   Email requerido
                 </p>
               </div>
             </fieldset>
             
-            <fieldset class="form-group">
-              <select formControlName="subject">
+            <fieldset class="form-group fieldset-border">
+              <select class="input" formControlName="subject">
                 <option value="Buys">Buys</option>
                 <option value="Sugerations">Sugerations</option>
               </select>
               <div *ngIf="contactForm.get('subject').errors && (contactForm.get('subject').dirty || contactForm.get('subject').touched)" class="alert alert-danger">
-                <p *ngIf="contactForm.get('subject').errors['required']">
+                <p class="error-ctn" *ngIf="contactForm.get('subject').errors['required']">
                   subject requerido
                 </p>
               </div>
             </fieldset>
 
-            <fieldset class="form-group">
-              <textarea class="form-control"
+            <fieldset class="form-group fieldset-border">
+              <textarea class="form-control input textarea"
                 formControlName="comment"
                 rows="8"
                 placeholder="Write your comment (in markdown)">
               </textarea>
               <div *ngIf="contactForm.get('comment').errors && (contactForm.get('comment').dirty || contactForm.get('comment').touched)" class="alert alert-danger">
-                <p *ngIf="contactForm.get('comment').errors['required']">
+                <p class="error-ctn" *ngIf="contactForm.get('comment').errors['required']">
                   comment requerido
                 </p>
-                <p *ngIf="contactForm.get('comment').errors['minlength']">
+                <p class="error-ctn" *ngIf="contactForm.get('comment').errors['minlength']">
                   comment min 8 characters
                 </p>
-                <p *ngIf="contactForm.get('comment').errors['maxlength']">
+                <p class="error-ctn" *ngIf="contactForm.get('comment').errors['maxlength']">
                   comment max 200 characters
                 </p>
-                <p *ngIf="contactForm.get('comment').errors['pattern']">
+                <p class="error-ctn" *ngIf="contactForm.get('comment').errors['pattern']">
                   Comment not valid
                 </p>
               </div>
             </fieldset>
-
-            <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="submitForm()" [disabled]="!contactForm.valid">
-              SEND
-            </button>
+            <div class="div-btn">
+              <button class="btn" type="button" (click)="submitForm()" [disabled]="!contactForm.valid">
+                SEND
+              </button>
+            </div>
           </fieldset>
         </form>
   </div>

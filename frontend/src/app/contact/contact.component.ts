@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-contact-page',
   templateUrl: './contact.component.html',
-  //styleUrls: ['./contact.component.css']
+  styleUrls: ['./contact.component.sass']
 })
 export class ContactComponent{
   article: Article = {} as Article;

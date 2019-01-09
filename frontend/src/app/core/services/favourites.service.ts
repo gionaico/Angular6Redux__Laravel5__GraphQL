@@ -44,7 +44,7 @@ export class FavouriteService {
       this.currentUser = userData;
     });
     try {
-      alert("peticion")
+      /* alert("peticion") */
       let q = this.apollo.watchQuery<any>({ query: gql`
           query {
             favourites(user: "${this.currentUser.username}"){
